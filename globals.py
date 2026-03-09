@@ -1,0 +1,2 @@
+window = None
+ui = None
