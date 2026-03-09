@@ -57,300 +57,333 @@
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="tab_usuarios">
-           <attribute name="title">
-            <string>Usuarios</string>
-           </attribute>
-           <widget class="QGroupBox" name="grpUsuario">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>10</y>
-              <width>512</width>
-              <height>242</height>
-             </rect>
-            </property>
-            <property name="title">
-             <string>Datos del Usuario</string>
-            </property>
-            <layout class="QFormLayout" name="layFormUsuario">
-             <property name="horizontalSpacing">
+           <widget class="QWidget" name="tab_usuarios">
+            <attribute name="title">
+             <string>Usuarios</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="layTabUsuarios">
+             <property name="spacing">
               <number>10</number>
              </property>
-             <property name="verticalSpacing">
+             <property name="leftMargin">
               <number>10</number>
              </property>
-             <item row="0" column="0">
-              <widget class="QLabel" name="lblNombre">
-               <property name="text">
-                <string>Nombre:</string>
+             <property name="topMargin">
+              <number>10</number>
+             </property>
+             <property name="rightMargin">
+              <number>10</number>
+             </property>
+             <property name="bottomMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QGroupBox" name="grpUsuario">
+               <property name="title">
+                <string>Datos del Usuario</string>
                </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLineEdit" name="txtNombre">
-               <property name="placeholderText">
-                <string>Introduzca el nombre</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="lblDNI">
-               <property name="text">
-                <string>NIF/CIF:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="txtDNI">
-               <property name="toolTip">
-                <string>Introduzca un NIF/CIF válido. Se verificará el formato.</string>
-               </property>
-               <property name="whatsThis">
-                <string>El NIF/CIF debe seguir el formato español válido (8 dígitos + letra).</string>
-               </property>
-               <property name="placeholderText">
-                <string>Ej: 12345678A</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="lblDireccion">
-               <property name="text">
-                <string>Dirección:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QLineEdit" name="txtDireccion">
-               <property name="placeholderText">
-                <string>Introduzca la dirección</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="lblEmail">
-               <property name="text">
-                <string>Email:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QLineEdit" name="txtEmail">
-               <property name="placeholderText">
-                <string>ejemplo@correo.com</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="lblMovil">
-               <property name="text">
-                <string>Móvil:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QLineEdit" name="txtMovil">
-               <property name="toolTip">
-                <string>El número de móvil debe comenzar por 6 o 7.</string>
-               </property>
-               <property name="whatsThis">
-                <string>Introduzca un número de móvil español válido (9 dígitos, empieza por 6 o 7).</string>
-               </property>
-               <property name="placeholderText">
-                <string>Debe empezar por 6 o 7</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="lblTipo">
-               <property name="text">
-                <string>Tipo:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QComboBox" name="cmbTipo">
-               <item>
-                <property name="text">
-                 <string>Cliente</string>
+               <layout class="QFormLayout" name="layFormUsuario">
+                <property name="horizontalSpacing">
+                 <number>10</number>
                 </property>
+                <property name="verticalSpacing">
+                 <number>10</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="lblNombre">
+                  <property name="text">
+                   <string>Nombre:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="txtNombre">
+                  <property name="placeholderText">
+                   <string>Introduzca el nombre</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="lblDNI">
+                  <property name="text">
+                   <string>NIF/CIF:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="txtDNI">
+                  <property name="toolTip">
+                   <string>Introduzca un NIF/CIF válido. Se verificará el formato.</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>El NIF/CIF debe seguir el formato español válido (8 dígitos + letra).</string>
+                  </property>
+                  <property name="autoFillBackground">
+                   <bool>true</bool>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Ej: 12345678A</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="lblDireccion">
+                  <property name="text">
+                   <string>Dirección:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="txtDireccion">
+                  <property name="placeholderText">
+                   <string>Introduzca la dirección</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="lblEmail">
+                  <property name="text">
+                   <string>Email:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLineEdit" name="txtEmail">
+                  <property name="placeholderText">
+                   <string>ejemplo@correo.com</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="lblMovil">
+                  <property name="text">
+                   <string>Móvil:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QLineEdit" name="txtMovil">
+                  <property name="toolTip">
+                   <string>El número de móvil debe comenzar por 6 o 7.</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>Introduzca un número de móvil español válido (9 dígitos, empieza por 6 o 7).</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Debe empezar por 6 o 7</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="0">
+                 <widget class="QLabel" name="lblTipo">
+                  <property name="text">
+                   <string>Tipo:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="1">
+                 <widget class="QComboBox" name="cmbTipo">
+                  <item>
+                   <property name="text">
+                    <string>Cliente</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Empleado</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="layBtnUsuario">
+               <property name="spacing">
+                <number>10</number>
+               </property>
+               <item>
+                <spacer name="hspBtnUsuario">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
                <item>
-                <property name="text">
-                 <string>Empleado</string>
-                </property>
+                <widget class="QPushButton" name="btnGuardarUsuario">
+                 <property name="text">
+                  <string>Guardar</string>
+                 </property>
+                </widget>
                </item>
+               <item>
+                <widget class="QPushButton" name="btnLimpiarUsuario">
+                 <property name="text">
+                  <string>Limpiar</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="tab_tareas">
+            <attribute name="title">
+             <string>Tareas</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="layTabTareas">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="topMargin">
+              <number>10</number>
+             </property>
+             <property name="rightMargin">
+              <number>10</number>
+             </property>
+             <property name="bottomMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QGroupBox" name="grpTareas">
+               <property name="title">
+                <string>Datos de la Tarea</string>
+               </property>
+               <layout class="QFormLayout" name="layFormTareas">
+                <property name="horizontalSpacing">
+                 <number>10</number>
+                </property>
+                <property name="verticalSpacing">
+                 <number>10</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="lblCliente">
+                  <property name="text">
+                   <string>Cliente:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QComboBox" name="cmbCliente">
+                  <property name="placeholderText">
+                   <string>Seleccione un cliente</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="lblEmpleado">
+                  <property name="text">
+                   <string>Empleado:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QComboBox" name="cmbEmpleado">
+                  <property name="toolTip">
+                   <string>Seleccione un empleado del panel Usuario.</string>
+                  </property>
+                  <property name="whatsThis">
+                   <string>Este campo hace referencia a los empleados registrados en el Panel Usuario.</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Seleccione un empleado</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="lblServicio">
+                  <property name="text">
+                   <string>Servicio:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QComboBox" name="cmbServicio">
+                  <property name="placeholderText">
+                   <string>Seleccione un servicio</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="lblHoras">
+                  <property name="text">
+                   <string>Horas:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QSpinBox" name="spnHoras">
+                  <property name="minimum">
+                   <number>0</number>
+                  </property>
+                  <property name="maximum">
+                   <number>999</number>
+                  </property>
+                  <property name="value">
+                   <number>0</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="lblPrecioHora">
+                  <property name="text">
+                   <string>Precio/hora:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QLineEdit" name="txtPrecioHora">
+                  <property name="placeholderText">
+                   <string>0.00 €</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="0">
+                 <widget class="QLabel" name="lblEstado">
+                  <property name="text">
+                   <string>Estado:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="1">
+                 <widget class="QComboBox" name="cmbEstado">
+                  <item>
+                   <property name="text">
+                    <string>Pendiente</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>En curso</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Finalizada</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Facturada</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </item>
             </layout>
            </widget>
-           <widget class="QPushButton" name="btnGuardarUsuario">
-            <property name="geometry">
-             <rect>
-              <x>340</x>
-              <y>250</y>
-              <width>80</width>
-              <height>30</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Guardar</string>
-            </property>
-           </widget>
-           <widget class="QPushButton" name="btnLimpiarUsuario">
-            <property name="geometry">
-             <rect>
-              <x>430</x>
-              <y>250</y>
-              <width>80</width>
-              <height>30</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Limpiar</string>
-            </property>
-           </widget>
-          </widget>
-          <widget class="QWidget" name="tab_tareas">
-           <attribute name="title">
-            <string>Tareas</string>
-           </attribute>
-           <widget class="QGroupBox" name="grpTareas">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>10</y>
-              <width>531</width>
-              <height>271</height>
-             </rect>
-            </property>
-            <property name="title">
-             <string>Datos de la Tarea</string>
-            </property>
-            <layout class="QFormLayout" name="layFormTareas">
-             <property name="horizontalSpacing">
-              <number>10</number>
-             </property>
-             <property name="verticalSpacing">
-              <number>10</number>
-             </property>
-             <item row="0" column="0">
-              <widget class="QLabel" name="lblCliente">
-               <property name="text">
-                <string>Cliente:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QComboBox" name="cmbCliente">
-               <property name="placeholderText">
-                <string>Seleccione un cliente</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="lblEmpleado">
-               <property name="text">
-                <string>Empleado:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QComboBox" name="cmbEmpleado">
-               <property name="toolTip">
-                <string>Seleccione un empleado del panel Usuario.</string>
-               </property>
-               <property name="whatsThis">
-                <string>Este campo hace referencia a los empleados registrados en el Panel Usuario.</string>
-               </property>
-               <property name="placeholderText">
-                <string>Seleccione un empleado</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="lblServicio">
-               <property name="text">
-                <string>Servicio:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QComboBox" name="cmbServicio">
-               <property name="placeholderText">
-                <string>Seleccione un servicio</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="lblHoras">
-               <property name="text">
-                <string>Horas:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QSpinBox" name="spnHoras">
-               <property name="minimum">
-                <number>0</number>
-               </property>
-               <property name="maximum">
-                <number>999</number>
-               </property>
-               <property name="value">
-                <number>0</number>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="lblPrecioHora">
-               <property name="text">
-                <string>Precio/hora:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QLineEdit" name="txtPrecioHora">
-               <property name="placeholderText">
-                <string>0.00 €</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="lblEstado">
-               <property name="text">
-                <string>Estado:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QComboBox" name="cmbEstado">
-               <item>
-                <property name="text">
-                 <string>Pendiente</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>En curso</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Finalizada</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Facturada</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </widget>
          </widget>
         </item>
        </layout>
