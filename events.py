@@ -59,3 +59,7 @@ class Events:
             widget.setStyleSheet("background-color: #B53A22;")
 
         return is_valid
+    @staticmethod
+    def mostrarId(widget: QLineEdit):
+        """TODO Hacer que muestre el id del empleado en el area clientes sacandolo de la base de datos"""
+        print(widget.text())
