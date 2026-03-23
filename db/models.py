@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from sqlalchemy import CheckConstraint, Float, ForeignKey, String
+from sqlalchemy import CheckConstraint, Float, ForeignKey, String, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
@@ -14,11 +14,13 @@ class Usuario(Base):
     __tablename__ = "usuarios"
     __table_args__ = (
         CheckConstraint("tipo IN ('cliente', 'empleado')", name="ck_usuarios_tipo"),
+        CheckConstraint("trim(dni) <> ''", name="ck_usuarios_dni_not_empty"),
+        UniqueConstraint("dni", name="uq_usuarios_dni"),
     )
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     nombre: Mapped[str] = mapped_column(String(120), nullable=False)
-    dni: Mapped[Optional[str]] = mapped_column(String(20), nullable=True)
+    dni: Mapped[str] = mapped_column(String(20), nullable=False)
     direccion: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
     email: Mapped[str] = mapped_column(String(160), nullable=False)
     movil: Mapped[Optional[str]] = mapped_column(String(20), nullable=True)

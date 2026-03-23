@@ -43,5 +43,4 @@ if __name__ == "__main__":
     globals.ui.tblUsuarios.itemSelectionChanged.connect(usuarios_controller.selUsuario)
     globals.ui.cmbFiltroTipo.currentIndexChanged.connect(usuarios_controller.cargarUsuario)
     globals.ui.actionSalir.triggered.connect(globals.window.close)
-
     sys.exit(app.exec())

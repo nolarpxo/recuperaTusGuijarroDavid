@@ -3,7 +3,7 @@
 CREATE TABLE IF NOT EXISTS usuarios (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(120) NOT NULL,
-    dni VARCHAR(20),
+    dni VARCHAR(20) NOT NULL UNIQUE CHECK (LENGTH(TRIM(dni)) > 0),
     direccion VARCHAR(255),
     email VARCHAR(160) NOT NULL,
     movil VARCHAR(20),
