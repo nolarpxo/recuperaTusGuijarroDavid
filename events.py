@@ -128,7 +128,7 @@ class UsuariosController:
 
     def cargarUsuario(self) -> None:
         filtro = self.ui.cmbFiltroTipo.currentText()
-        usuarios = self.service.list_usuarios(filtro)
+        usuarios = self._get_usuarios_filtrados(filtro)
 
         table = self.ui.tblUsuarios
         table.setRowCount(len(usuarios))
@@ -152,6 +152,8 @@ class UsuariosController:
                     )
                 table.setItem(row, col, item)
 
+        self._sync_selection_after_reload(usuarios)
+        self._update_users_status(filtro, len(usuarios))
         self._refresh_task_combos()
 
     def selUsuario(self) -> None:
@@ -245,7 +247,23 @@ class UsuariosController:
         for usuario in usuarios:
             combo.addItem(f"{usuario.id} - {usuario.nombre}", usuario.id)
 
-    def _select_table_row_by_id(self, user_id: int) -> None:
+    def _get_usuarios_filtrados(self, filtro: str):
+        filtro_normalizado = (filtro or "").strip().lower()
+        if filtro_normalizado in {"cliente", "empleado"}:
+            return self.service.list_usuarios_por_tipo(filtro_normalizado)
+        return self.service.list_usuarios()
+
+    def _sync_selection_after_reload(self, usuarios) -> None:
+        if self.selected_user_id is None:
+            return
+
+        if any(usuario.id == self.selected_user_id for usuario in usuarios):
+            self._select_table_row_by_id(self.selected_user_id)
+            return
+
+        self.limpiarFormulario()
+
+    def _select_table_row_by_id(self, user_id: int) -> bool:
         table = self.ui.tblUsuarios
         for row in range(table.rowCount()):
             item = table.item(row, 0)
@@ -253,7 +271,19 @@ class UsuariosController:
                 continue
             if item.text() == str(user_id):
                 table.selectRow(row)
-                return
+                return True
+        return False
+
+    def _update_users_status(self, filtro: str, total: int) -> None:
+        filtro_normalizado = (filtro or "").strip().lower()
+        if filtro_normalizado == "empleado":
+            message = f"Mostrando {total} empleado(s) ordenados por nombre"
+        elif filtro_normalizado == "cliente":
+            message = f"Mostrando {total} cliente(s) ordenados por nombre"
+        else:
+            message = f"Mostrando {total} usuario(s)"
+
+        self.ui.statusbar.showMessage(message)
 
     def _show_error(self, text: str) -> None:
         QMessageBox.critical(self.ui.tab_usuarios, "Error", text)
