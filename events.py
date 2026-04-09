@@ -1,14 +1,19 @@
 from __future__ import annotations
 
+from datetime import datetime
+from pathlib import Path
+
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QAbstractItemView,
+    QFileDialog,
     QHeaderView,
     QLineEdit,
     QMessageBox,
     QTableWidgetItem,
 )
 
+from services.report_service import ReportService
 from services.usuarios_service import UsuarioService
 
 
@@ -63,9 +68,15 @@ class Events:
 
 
 class UsuariosController:
-    def __init__(self, ui, service: UsuarioService | None = None):
+    def __init__(
+        self,
+        ui,
+        service: UsuarioService | None = None,
+        report_service: ReportService | None = None,
+    ):
         self.ui = ui
         self.service = service or UsuarioService()
+        self.report_service = report_service or ReportService()
         self.selected_user_id: int | None = None
 
         self._configure_users_table()
@@ -190,11 +201,27 @@ class UsuariosController:
         self.selected_user_id = None
 
     def solicitarListadoEmpleados(self) -> None:
+        empleados = self.service.list_empleados_para_informe()
+        if not empleados:
+            self._show_error("No hay empleados registrados para generar el informe")
+            return
+
+        output_path = self._ask_report_output_path()
+        if output_path is None:
+            self.ui.statusbar.showMessage("Generacion del informe cancelada", 5000)
+            return
+
+        try:
+            pdf_path = self.report_service.generar_listado_empleados(output_path, empleados)
+        except Exception as exc:
+            self._show_error(f"No se pudo generar el informe: {exc}")
+            return
+
+        self.ui.statusbar.showMessage(f"Informe generado en {pdf_path}", 10000)
         QMessageBox.information(
             self.ui.tab_usuarios,
             "Informes",
-            "La opcion 'Listado empleados' ya esta conectada. "
-            "La generacion del PDF se implementara en el siguiente paso.",
+            f"Informe generado correctamente:\n{pdf_path}",
         )
 
     def _configure_users_table(self) -> None:
@@ -292,6 +319,31 @@ class UsuariosController:
             message = f"Mostrando {total} usuario(s)"
 
         self.ui.statusbar.showMessage(message)
+
+    @staticmethod
+    def _build_default_report_path() -> Path:
+        report_dir = Path.cwd() / "informes"
+        report_dir.mkdir(parents=True, exist_ok=True)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        return report_dir / f"listado_empleados_{timestamp}.pdf"
+
+    def _ask_report_output_path(self) -> Path | None:
+        default_path = self._build_default_report_path()
+        file_path, _ = QFileDialog.getSaveFileName(
+            self.ui.tab_usuarios,
+            "Guardar listado de empleados",
+            str(default_path),
+            "PDF (*.pdf)",
+        )
+
+        if not file_path:
+            return None
+
+        selected_path = Path(file_path)
+        if selected_path.suffix.lower() != ".pdf":
+            selected_path = selected_path.with_suffix(".pdf")
+
+        return selected_path
 
     def _show_error(self, text: str) -> None:
         QMessageBox.critical(self.ui.tab_usuarios, "Error", text)
