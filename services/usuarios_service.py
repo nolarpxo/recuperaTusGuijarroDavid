@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from dataclasses import dataclass
 from typing import Any
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -12,6 +13,14 @@ from db.models import Usuario
 
 
 VALID_TYPES = {"cliente", "empleado"}
+
+
+@dataclass(frozen=True, slots=True)
+class EmpleadoListado:
+    nombre: str
+    email: str
+    movil: str
+    tipo: str
 
 
 def normalize_tipo(value: str | None) -> str | None:
@@ -42,14 +51,44 @@ class UsuarioService:
             stmt = stmt.order_by(Usuario.id.asc())
             return list(session.scalars(stmt))
 
+    def list_empleados(self) -> list[Usuario]:
+        return self.list_usuarios_por_tipo("empleado")
+
     def list_usuarios_por_tipo(self, tipo: str) -> list[Usuario]:
         normalized_tipo = normalize_tipo(tipo)
         if normalized_tipo is None:
             return []
 
         with self._session_factory() as session:
-            stmt = select(Usuario).where(Usuario.tipo == normalized_tipo).order_by(Usuario.nombre.asc())
+            stmt = (
+                select(Usuario)
+                .where(Usuario.tipo == normalized_tipo)
+                .order_by(func.lower(Usuario.nombre).asc(), Usuario.id.asc())
+            )
             return list(session.scalars(stmt))
+
+    def list_empleados_para_informe(self) -> list[EmpleadoListado]:
+        with self._session_factory() as session:
+            stmt = (
+                select(
+                    Usuario.nombre,
+                    Usuario.email,
+                    Usuario.movil,
+                    Usuario.tipo,
+                )
+                .where(Usuario.tipo == "empleado")
+                .order_by(func.lower(Usuario.nombre).asc(), Usuario.id.asc())
+            )
+
+            return [
+                EmpleadoListado(
+                    nombre=nombre,
+                    email=email,
+                    movil=movil or "",
+                    tipo=tipo.capitalize(),
+                )
+                for nombre, email, movil, tipo in session.execute(stmt)
+            ]
 
     def get_usuario(self, user_id: int) -> Usuario | None:
         with self._session_factory() as session:
