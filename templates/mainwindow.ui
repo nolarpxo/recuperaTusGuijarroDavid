@@ -547,7 +547,14 @@
      <string>Acerca de</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuInformes">
+    <property name="title">
+     <string>Informes</string>
+    </property>
+    <addaction name="actionListadoEmpleados"/>
+   </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuInformes"/>
    <addaction name="menuNavegacion"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -564,6 +571,11 @@
   <action name="actionPanelTareas">
    <property name="text">
     <string>Panel Tareas</string>
+   </property>
+  </action>
+  <action name="actionListadoEmpleados">
+   <property name="text">
+    <string>Listado empleados</string>
    </property>
   </action>
  </widget>

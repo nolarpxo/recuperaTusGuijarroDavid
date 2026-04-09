@@ -189,6 +189,14 @@ class UsuariosController:
         self.ui.tblUsuarios.clearSelection()
         self.selected_user_id = None
 
+    def solicitarListadoEmpleados(self) -> None:
+        QMessageBox.information(
+            self.ui.tab_usuarios,
+            "Informes",
+            "La opcion 'Listado empleados' ya esta conectada. "
+            "La generacion del PDF se implementara en el siguiente paso.",
+        )
+
     def _configure_users_table(self) -> None:
         table = self.ui.tblUsuarios
         table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
