@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+
+.venv/
+.idea/
+.ruff_cache/
+.claude/
+.codex
+.codex/
+AGENTS.md
+
+informes/
+entrega3.zip
+
+*.sqlite
