@@ -208,7 +208,7 @@ class UsuariosController:
 
         output_path = self._ask_report_output_path()
         if output_path is None:
-            self.ui.statusbar.showMessage("Generacion del informe cancelada", 5000)
+            self.ui.statusbar.showMessage("Generación del informe cancelada", 5000)
             return
 
         try:

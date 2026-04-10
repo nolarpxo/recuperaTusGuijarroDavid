@@ -49,8 +49,7 @@ class UsuarioService:
             if normalized_tipo is not None:
                 stmt = stmt.where(Usuario.tipo == normalized_tipo)
             stmt = stmt.order_by(Usuario.id.asc())
-            return list(session.scalars(rfd123
-            stmt))
+            return list(session.scalars(stmt))
 
     def list_empleados(self) -> list[Usuario]:
         return self.list_usuarios_por_tipo("empleado")
